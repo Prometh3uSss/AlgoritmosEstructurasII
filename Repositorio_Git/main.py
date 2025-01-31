@@ -17,9 +17,9 @@ def main():
     repo.cambiar_rama("develop")
     repo.hacer_commit("Added new feature")
 
-    # Cambiar a la rama principal y hacer un merge
+    # Cambiar a la rama principal y hacer commit
     repo.cambiar_rama("main")
-    repo.merge("develop")
+    repo.hacer_commit("Merged develop into main")
 
     # Mostrar el historial de commits
     repo.mostrar_historial()

@@ -9,6 +9,10 @@ class Repositorio:
         self.historial = []
 
     def crear_rama(self, nombre):
+        # Validar que el nombre de la rama no esté vacío
+        if not nombre or not isinstance(nombre, str):
+            print("El nombre de la rama no puede estar vacío o no ser una cadena.")
+            return
         if nombre in self.ramas:
             print(f"La rama '{nombre}' ya existe.")
             return
@@ -16,6 +20,10 @@ class Repositorio:
         print(f"Rama '{nombre}' creada.")
 
     def cambiar_rama(self, nombre):
+        # Validar que el nombre de la rama no esté vacío
+        if not nombre or not isinstance(nombre, str):
+            print("El nombre de la rama no puede estar vacío o no ser una cadena.")
+            return
         if nombre not in self.ramas:
             print(f"La rama '{nombre}' no existe.")
             return
@@ -23,6 +31,10 @@ class Repositorio:
         print(f"Cambiado a la rama '{nombre}'.")
 
     def hacer_commit(self, mensaje):
+        # Validar que el mensaje no esté vacío
+        if not mensaje or not isinstance(mensaje, str):
+            print("El mensaje del commit no puede estar vacío o no ser una cadena.")
+            return
         if self.rama_actual is None:
             print("No hay ninguna rama seleccionada.")
             return
@@ -33,6 +45,10 @@ class Repositorio:
         print(f"Commit realizado: {mensaje}")
 
     def merge(self, nombre_rama):
+        # Validar que el nombre de la rama no esté vacío
+        if not nombre_rama or not isinstance(nombre_rama, str):
+            print("El nombre de la rama no puede estar vacío o no ser una cadena.")
+            return
         if nombre_rama not in self.ramas:
             print(f"La rama '{nombre_rama}' no existe.")
             return
@@ -44,5 +60,8 @@ class Repositorio:
         print(f"Rama '{nombre_rama}' fusionada en '{self.rama_actual.nombre}'.")
 
     def mostrar_historial(self):
+        if not self.historial:
+            print("No hay historial de commits.")
+            return
         for commit in self.historial:
             print(commit)
