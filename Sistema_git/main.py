@@ -1,6 +1,7 @@
 import argparse
 import os
 from models.repository import Repository
+from models.commit import Commit
 from commands.init import InitCommand
 from commands.add import AddCommand
 from commands.commit import CommitCommand

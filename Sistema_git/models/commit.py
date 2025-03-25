@@ -1,13 +1,14 @@
-from hashlib import sha1
+# models/commit.py
 from datetime import datetime
+from hashlib import sha1
 
 class Commit:
     def __init__(self, message, author, parent, files, branch_name):
         self.message = message
         self.author = author
         self.timestamp = datetime.now().isoformat()
-        self.parent = parent  # ID del commit padre (None si es el primero)
-        self.files = files  # Lista de archivos modificados
+        self.parent = parent
+        self.files = files
         self.branch_name = branch_name
         self.commit_id = self._generate_sha1()
 
