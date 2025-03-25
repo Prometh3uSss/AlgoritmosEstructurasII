@@ -1,0 +1,7 @@
+{
+    "comandos_habilitados": {
+        "init": true,
+        "add": true,
+        "commit": true
+    }
+}
