@@ -1,5 +1,5 @@
+import os  # Importación crítica
 import argparse
-import os
 from models.repository import Repository
 from models.commit import Commit
 from commands.init import InitCommand
@@ -32,7 +32,7 @@ def main():
 
     args = parser.parse_args()
 
-    if not args.command:  # Si no se especifica un comando
+    if not args.command:
         parser.print_help()
         return
 
@@ -69,12 +69,12 @@ def main():
                 result = cmd.execute()
 
             # Guardar cambios
-            save_json(f"data/repos/{repo_name}/repo.json", repo.to_json())
+            repo._save_repo()
             print(result)
 
     except Exception as e:
         print(f"Error crítico: {str(e)}")
 
 if __name__ == "__main__":
-    os.makedirs("data/repos", exist_ok=True)
+    os.makedirs("data/repos", exist_ok=True)  # Aquí se usa 'os'
     main()

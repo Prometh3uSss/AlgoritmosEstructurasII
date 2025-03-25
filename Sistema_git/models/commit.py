@@ -1,4 +1,3 @@
-# models/commit.py
 from datetime import datetime
 from hashlib import sha1
 
@@ -13,7 +12,10 @@ class Commit:
         self.commit_id = self._generate_sha1()
 
     def _generate_sha1(self):
-        data = f"{self.timestamp}{self.message}{self.author}".encode()
+        # Incluir más datos para mayor unicidad (archivos, timestamp, etc.)
+        data = f"{self.timestamp}{self.message}{self.author}{self.parent}{self.branch_name}".encode()
+        for file in self.files:
+            data += file["nombre"].encode() + file["checksum"].encode()
         return sha1(data).hexdigest()
 
     def to_json(self):

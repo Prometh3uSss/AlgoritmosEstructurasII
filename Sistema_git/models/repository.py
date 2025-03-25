@@ -26,12 +26,12 @@ class Repository:
         self.current_branch = branch_name
 
     def _save_repo(self):
-        # Guardar en data/repos/<nombre>/repo.json
         repo_data = {
             "name": self.name,
             "current_branch": self.current_branch,
             "branches": {name: branch.to_json() for name, branch in self.branches.items()},
-            "commits": [commit.to_json() for commit in self.commits]
+            "commits": [commit.to_json() for commit in self.commits],
+            "staging_area": self.staging_area.get_files()  # ¡Incluir el staging!
         }
         save_json(f"data/repos/{self.name}/repo.json", repo_data)
     
@@ -46,6 +46,7 @@ class Repository:
         repo.current_branch = data["current_branch"]
         repo.commits = [Commit.from_json(c) for c in data["commits"]]
         repo.branches = {name: Branch.from_json(b) for name, b in data["branches"].items()}
+        repo.staging_area.files = data.get("staging_area", [])  # ¡Añade esta línea!
         return repo
 
     def to_json(self):
