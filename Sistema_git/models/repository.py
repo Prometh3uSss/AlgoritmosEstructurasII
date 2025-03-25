@@ -34,3 +34,30 @@ class Repository:
             "commits": [commit.to_json() for commit in self.commits]
         }
         save_json(f"data/repos/{self.name}/repo.json", repo_data)
+    
+    @classmethod
+    def load(cls, repo_name):
+        """Carga un repositorio desde el disco."""
+        data = load_json(f"data/repos/{repo_name}/repo.json")
+        if not data:
+            raise ValueError(f"Repositorio '{repo_name}' no existe.")
+        
+        repo = cls(data["name"])
+        repo.current_branch = data["current_branch"]
+        repo.commits = [Commit.from_json(c) for c in data["commits"]]
+        repo.branches = {name: Branch.from_json(b) for name, b in data["branches"].items()}
+        return repo
+
+    def to_json(self):
+        return {
+            "name": self.name,
+            "current_branch": self.current_branch,
+            "commits": [c.to_json() for c in self.commits]
+        }
+
+    @classmethod
+    def from_json(cls, data):
+        repo = cls(data["name"])
+        repo.current_branch = data["current_branch"]
+        repo.commits = [Commit.from_json(c) for c in data["commits"]]
+        return repo

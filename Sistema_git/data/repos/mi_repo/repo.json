@@ -1,0 +1,21 @@
+{
+    "name": "mi_repo",
+    "current_branch": "main",
+    "branches": {
+        "main": {
+            "name": "main",
+            "latest_commit": "a1b2c3d4"
+        }
+    },
+    "commits": [
+        {
+            "commit_id": "a1b2c3d4",
+            "message": "Initial commit",
+            "author": "user@example.com",
+            "timestamp": "2023-10-10T12:00:00",
+            "parent": null,
+            "files": [],
+            "branch_name": "main"
+        }
+    ]
+}
